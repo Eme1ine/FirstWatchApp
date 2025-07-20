@@ -35,7 +35,8 @@ class MainActivity : ComponentActivity() {
         heartRateService = HeartRateService(this)
         setContent {
             val bpm by heartRateService.heartRate
-            AppNavigation(bpm)
+            val zone by heartRateService.zone
+            AppNavigation(bpm, zone)
         }
         heartRateService.checkAndRequestPermission()
     }

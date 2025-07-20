@@ -10,9 +10,10 @@ import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
+import com.example.firstwatchapp.presentation.sensors.HeartRateService
 
 @Composable
-fun HeartRateScreen(heartRate : Float) {
+fun HeartRateScreen(heartRate : Float, zone : Int) {
 
     Box(
         modifier = Modifier
@@ -30,7 +31,7 @@ fun HeartRateScreen(heartRate : Float) {
                     style = MaterialTheme.typography.title3
                 )
                 Text(
-                    text = "$heartRate bpm",
+                    text = "$heartRate bpm \n Zone $zone",
                     style = MaterialTheme.typography.title1
                 )
             }
