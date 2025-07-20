@@ -16,10 +16,12 @@ import androidx.health.services.client.data.*
 import androidx.health.services.client.HealthServicesClient
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
+import com.example.firstwatchapp.presentation.audio.HeartRateZoneAnnouncer
 
 class HeartRateService(private val activity: ComponentActivity) {
     val heartRate = mutableFloatStateOf(0f)
     val zone = mutableIntStateOf(0)
+    private var heartRateZoneAnnouncer = HeartRateZoneAnnouncer(activity)
 
     private val permissionLauncher = activity.registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -76,7 +78,7 @@ class HeartRateService(private val activity: ComponentActivity) {
     }
 
     fun updateZone(){
-        var old_value = zone.intValue
+        val oldValue = zone.intValue
         if (heartRate.floatValue < 60) {
             zone.intValue = 1
         }
@@ -87,11 +89,12 @@ class HeartRateService(private val activity: ComponentActivity) {
             zone.intValue = 3
         }
 
-        if ( old_value != zone.intValue){
+        if ( oldValue != zone.intValue){
             val vibratorManager = activity.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
             val vibrator = vibratorManager.defaultVibrator
             val effect = VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE)
             vibrator.vibrate(effect)
+            heartRateZoneAnnouncer.speakZone(zone.intValue)
         }
     }
 }

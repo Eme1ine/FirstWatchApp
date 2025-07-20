@@ -6,7 +6,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.firstwatchapp.presentation.screen.HeartRateScreen
 import com.example.firstwatchapp.presentation.screen.MainScreen
-import com.example.firstwatchapp.presentation.sensors.HeartRateService
 
 @Composable
 fun AppNavigation(heartRate: Float, zone : Int) {

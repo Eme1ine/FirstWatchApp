@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.TimeText
-import com.example.firstwatchapp.presentation.sensors.HeartRateService
 
 @Composable
 fun HeartRateScreen(heartRate : Float, zone : Int) {
