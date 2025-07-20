@@ -31,7 +31,11 @@ class HeartRateService(private val activity: ComponentActivity) {
 
     private val heartRateCallback = object : MeasureCallback {
         override fun onAvailabilityChanged(dataType: DeltaDataType<*, *>, availability: Availability) {
-            Log.d("HeartRate", "Availability: ${availability.javaClass.simpleName}")
+            Log.d("HeartRate", "Availability: ${availability.id}")
+            if (availability is DataTypeAvailability) {
+                // Handle availability change.
+                Log.d("HeartRate", "Availibility changed : ${availability.name}")
+            }
         }
 
         override fun onDataReceived(data: DataPointContainer) {
